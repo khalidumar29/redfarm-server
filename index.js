@@ -31,7 +31,7 @@ const run = async () => {
       const products = await cursor.toArray();
       res.send(products);
     });
-    /** get data using id */
+    /** get data using id  */
     app.get("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
