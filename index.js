@@ -38,13 +38,13 @@ const run = async () => {
       const products = await productCollection.findOne(query);
       res.send(products);
     });
-    /** update quantity */
-    app.post("/inventory/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: ObjectId(id) };
-      const update = await productCollection.updateOne(query);
-      res.send(update);
-    });
+    // /** update quantity */
+    // app.post("/inventory/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: ObjectId(id) };
+    //   const update = await productCollection.updateOne(query);
+    //   res.send(update);
+    // });
   } finally {
     /** nothin to happen */
   }
