@@ -39,15 +39,22 @@ const run = async () => {
       res.send(products);
     });
     /** update quantity */
-    // app.post("/inventory/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const quantity = req.body;
-    //   const query = { _id: ObjectId(id) };
-    //   const update = await db.productCollection.updateOne(query, {
-    //     $set: { quantity: quantity },
-    //   });
-    //   res.send(update);
-    // });
+    app.put("/inventory/:id", async (req, res) => {
+      const id = req.params.id;
+      const productsDetails = req.body;
+      const query = { _id: ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: { quantity: productsDetails.quantity },
+      };
+      const result = await productCollection.updateOne(
+        query,
+        updateDoc,
+        options
+      );
+
+      res.send(result);
+    });
   } finally {
     /** nothin to happen */
   }
