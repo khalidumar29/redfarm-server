@@ -3,7 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
-
+const jwt = require("jsonwebtoken");
 /** middle ware */
 app.use(cors());
 app.use(express.json());
@@ -67,6 +67,14 @@ const run = async () => {
       const query = { _id: ObjectId(id) };
       const result = await productCollection.deleteOne(query);
       res.send(result);
+    });
+    /** jwt token */
+    app.post("/getjwt", async (req, res) => {
+      const user = req.body;
+      const secretToken = jwt.sign(user, process.env.JWT_TOKEN, {
+        expiresIn: "5d",
+      });
+      res.send({ secretToken });
     });
   } finally {
     /** nothin to happen .*/
