@@ -24,6 +24,13 @@ const run = async () => {
       .db("inventor-products")
       .collection("inventorAllProducts");
 
+    /** creat products */
+    app.post("/inventory", async (req, res) => {
+      const addedProduct = req.body;
+      const result = await productCollection.insertOne(addedProduct);
+      res.send(result);
+    });
+
     /** get all products */
     app.get("/inventory", async (req, res) => {
       const query = {};
