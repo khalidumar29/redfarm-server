@@ -56,7 +56,7 @@ const run = async () => {
       res.send(result);
     });
   } finally {
-    /** nothin to happen .*/
+    /** nothing to happen .*/
   }
 };
 run().catch(console.dir);
