@@ -52,11 +52,17 @@ const run = async () => {
         updateDoc,
         options
       );
-
+      res.send(result);
+    });
+    /** delete products by id */
+    app.delete("/inventory/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await productCollection.deleteOne(query);
       res.send(result);
     });
   } finally {
-    /** nothing to happen .*/
+    /** nothin to happen .*/
   }
 };
 run().catch(console.dir);
